@@ -1,0 +1,27 @@
+{
+  "name": "jquery.timeInput",
+  "title": "TimeInput",
+  "description": "The best jQuery plugin ever.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/manuelvanrijn/jquery-timeInput",
+  "author": {
+    "name": "Manuel van Rijn",
+    "email": "manuel@manuelles.nl",
+    "url": "http://manuel.manuelles.nl"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/manuelvanrijn/jquery-timeInput.git"
+  },
+  "bugs": "https://github.com/manuelvanrijn/jquery-timeInput/issues",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/manuelvanrijn/jquery-timeInput/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": "*"
+  },
+  "keywords": []
+}
