@@ -1,4 +1,4 @@
-# TimeInput
+# TimeInput [![Build Status](https://travis-ci.org/manuelvanrijn/jquery-timeInput.png?branch=master)](https://travis-ci.org/manuelvanrijn/jquery-timeInput)
 
 A jQuery plugin for adding time input support inspired by [letsfreckle](www.letsfreckle.com)
 
