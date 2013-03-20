@@ -125,11 +125,18 @@
         minutes = 0;
       }
 
+      if(this.options.roundMinutesUpStep !== null) {
+        var times = Math.ceil(minutes/this.options.roundMinutesUpStep);
+        minutes = times * this.options.roundMinutesUpStep;
+      }
+
+      // round it
       if(parseInt(minutes, 10) >= 60) {
         extraHours = parseInt(minutes/60, 10);
         minutes = minutes-(extraHours*60);
       }
       hours = parseInt(hours, 10) + extraHours;
+
       return hours + ":" + this.padNumber(minutes, 2, '0');
     }
   };
@@ -142,6 +149,8 @@
     });
   };
 
-  $.fn.timeInput.defaults = {};
+  $.fn.timeInput.defaults = {
+    roundMinutesUpStep: null
+  };
 
 }( jQuery, window, document ));

@@ -20,3 +20,22 @@ jQuery(function($) {
 });
 </script>
 ```
+
+## Options
+
+### Round minutes up step
+
+```js
+{
+  roundMinutesUpStep: 15
+}
+```
+
+Minutes the input will be rounded on 15 minutes. **Example:** `0.10 --> 0.15` and `1:02 --> 1:15`
+
+## Changelog
+
+    | Version | Notes                                                                     |
+    |---------+---------------------------------------------------------------------------|
+    |   0.1.1 | Added rounding minutes up to step option                                  |
+    |   0.1.0 | Initial release                                                           |

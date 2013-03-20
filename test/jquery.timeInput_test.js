@@ -20,9 +20,13 @@
       throws(block, [expected], [message])
   */
 
-  module('jQuery.timeInput', {
+  module('parse time behaviour', {
     setup: function() {
-      this.timeinput = $('#qunit-fixture input').timeInput().data('timeInput');
+      var input = $('<input type="text" />').appendTo('#qunit-fixture');
+      this.timeinput = input.timeInput().data('timeInput');
+    },
+    teardown: function() {
+      $('#qunit-fixture input').remove();
     }
   });
   test('parse hours', function() {
@@ -105,6 +109,80 @@
     for(var i=0; i<testSuite.length;i++) {
       var test = testSuite[i];
       equal(this.timeinput.parseInput(test.input), test.result, 'parse large minutes');
+    }
+  });
+
+  module('options', {
+    setup: function() {
+      $('<input type="text" />').appendTo('#qunit-fixture');
+    },
+    teardown: function() {
+      $('#qunit-fixture input').remove();
+    }
+  });
+  test('round input minutes up to 15', function() {
+    var instance = $('#qunit-fixture input').timeInput({
+      roundMinutesUpStep: 15
+    }).data('timeInput');
+
+    var testSuite = [
+      {input: '0:10', result: '0:15'},
+      {input: '0:12', result: '0:15'},
+      {input: '0:16', result: '0:30'},
+      {input: '0:50', result: '1:00'},
+      {input: '0:90', result: '1:30'},
+      {input: '0:95', result: '1:45'},
+      {input: '10', result: '0:15'},
+      {input: '12', result: '0:15'},
+      {input: '35', result: '0:45'},
+      {input: '59', result: '1:00'},
+      {input: '2240', result: '22:45'}
+    ];
+    for(var i=0; i<testSuite.length;i++) {
+      var test = testSuite[i];
+      equal(instance.parseInput(test.input), test.result, 'round up to 15');
+    }
+  });
+  test('round input minutes up to 5', function() {
+    var instance = $('#qunit-fixture input').timeInput({
+      roundMinutesUpStep: 5
+    }).data('timeInput');
+
+    var testSuite = [
+      {input: '0:10', result: '0:10'},
+      {input: '0:12', result: '0:15'},
+      {input: '0:16', result: '0:20'},
+      {input: '0:50', result: '0:50'},
+      {input: '0:91', result: '1:35'},
+      {input: '0:89', result: '1:30'},
+      {input: '10', result: '0:10'},
+      {input: '12', result: '0:15'},
+      {input: '35', result: '0:35'},
+      {input: '59', result: '1:00'},
+      {input: '2242', result: '22:45'}
+    ];
+    for(var i=0; i<testSuite.length;i++) {
+      var test = testSuite[i];
+      equal(instance.parseInput(test.input), test.result, 'round up by 5 steps');
+    }
+  });
+  test('round special values up to 5', function() {
+    var instance = $('#qunit-fixture input').timeInput({
+      roundMinutesUpStep: 15
+    }).data('timeInput');
+
+    var testSuite = [
+      {input: '1:1', result: '1:15'},
+      {input: ':1', result: '0:15'},
+      {input: ':10', result: '0:15'},
+      {input: '1:', result: '1:00'},
+      {input: '11:', result: '11:00'},
+      {input: '30:12', result: '30:15'},
+      {input: '130:21', result: '130:30'}
+    ];
+    for(var i=0; i<testSuite.length;i++) {
+      var test = testSuite[i];
+      equal(instance.parseInput(test.input), test.result, 'round up special input');
     }
   });
 
