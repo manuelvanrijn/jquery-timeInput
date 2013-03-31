@@ -1,4 +1,4 @@
-/*! TimeInput - v0.1.1 - 2013-03-20
+/*! TimeInput - v0.1.2 - 2013-03-31
 * https://github.com/manuelvanrijn/jquery-timeInput
 * Copyright (c) 2013 Manuel van Rijn; Licensed MIT */
 ;(function( $, window, document, undefined ) {
@@ -36,15 +36,13 @@
         var value = _instance.$elem.val().replace(/[^0-9.,:]/g, "");
         value = _instance.parseInput(value);
         _instance.$elem.val(value);
+        _instance.options.onChange.call( this, value );
       });
 
       return _instance;
     },
     isNumericOrSeperatingValue: function(input) {
       switch(input) {
-        case 188:    // ,
-        case 190:    // .
-        case 186:    // :
         case 48:     // 0
         case 49:     // 1
         case 50:     // 2
@@ -145,7 +143,8 @@
   };
 
   $.fn.timeInput.defaults = {
-    roundMinutesUpStep: null
+    roundMinutesUpStep: null,
+    onChange: function() {}
   };
 
 }( jQuery, window, document ));
