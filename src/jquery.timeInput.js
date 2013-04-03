@@ -24,12 +24,13 @@
       // bind the keypress event
       _instance.$elem.on('keydown', function(e) {
         var value = _instance.$elem.val();
-        if(_instance.isNumericOrSeperatingValue(e.which) === false) {
+        if(_instance.isNumericOrSeperatingValue(e) === false) {
           e.preventDefault();
         }
         switch(e.which) {
           case 188:  // ,
           case 190:  // .
+          case 110:  // . numpad
           case 186:  // :
             if(value.split(':').length !== 2) {
               value = value += ':';
@@ -46,18 +47,31 @@
 
       return _instance;
     },
-    isNumericOrSeperatingValue: function(input) {
-      switch(input) {
+    isNumericOrSeperatingValue: function(e) {
+      if(e.ctrlKey) {
+        return true;
+      }
+      switch(e.which) {
         case 48:     // 0
+        case 96:     // 0 numpad
         case 49:     // 1
+        case 97:     // 1 numpad
         case 50:     // 2
+        case 98:     // 2 numpad
         case 51:     // 3
+        case 99:     // 3 numpad
         case 52:     // 4
+        case 100:    // 4 numpad
         case 53:     // 5
+        case 101:    // 5 numpad
         case 54:     // 6
+        case 102:    // 6 numpad
         case 55:     // 7
+        case 103:    // 7 numpad
         case 56:     // 8
+        case 104:    // 8 numpad
         case 57:     // 9
+        case 105:    // 9 numpad
         case 0 :     // browser specific special key
         case 8 :     // backspace
         case 9 :     // tab

@@ -31,7 +31,7 @@ jQuery(function($) {
 }
 ```
 
-Minutes the input will be rounded on 15 minutes. **Example:** `0.10 --> 0.15` and `1:02 --> 1:15`
+Minutes the input will be rounded on 15 minutes. **Example:** `0.10 --> 0:15` and `1:02 --> 1:15`
 
 ```js
 {
@@ -45,6 +45,7 @@ Callback that is called after the new value has been set, with the new value as 
 
     | Version | Notes                                                                     |
     |---------+---------------------------------------------------------------------------|
+    |   0.1.3 | Added support for numpad input                                            |
     |   0.1.2 | Added the onChange callback                                               |
     |   0.1.1 | Added rounding minutes up to step option                                  |
     |   0.1.0 | Initial release                                                           |
